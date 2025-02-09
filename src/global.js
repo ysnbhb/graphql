@@ -1,4 +1,4 @@
-export const login = /*html*/`
+export const logincp = /*html*/ `
     <div class="login-container">
         <div class="login-card">
             <h2>Welcome Back</h2>
@@ -13,4 +13,4 @@ export const login = /*html*/`
             </form>
         </div>
     </div>
-`
+`;
