@@ -65,8 +65,10 @@ export function creatPath(trans) {
         Name : ${point.name}<br>
         Total XP : ${formatSize(point.xp)}
       `;
+      circle.setAttribute("r", "8");
       circle.addEventListener("mouseleave", () => {
         div.remove();
+        circle.setAttribute("r", "5");
       });
       document.body.append(div);
     });
