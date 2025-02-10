@@ -4,6 +4,7 @@ import { ShowAditau, showUserinfo } from "./make.js";
 import { CreateNext, creatPath } from "./path.js";
 
 export async function GetData(jwt) {
+  document.head.querySelector("title").innerText = "Home"
   select.innerHTML = "";
   select.style.alignItems = "";
   const respons = await fetch(

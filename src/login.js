@@ -2,6 +2,7 @@ import { GetData } from "./graphql/fetch.js";
 import { select } from "./main.js";
 
 export async function login() {
+  document.head.querySelector("title").innerText = "sign up";
   select.style.alignItems ="center"
   document.getElementById("form").addEventListener("submit", async (e) => {
     e.preventDefault();
