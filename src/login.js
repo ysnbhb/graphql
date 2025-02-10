@@ -1,6 +1,8 @@
 import { GetData } from "./graphql/fetch.js";
+import { select } from "./main.js";
 
 export async function login() {
+  select.style.alignItems ="center"
   document.getElementById("form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const user = document.getElementById("user");

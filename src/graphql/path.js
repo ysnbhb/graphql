@@ -1,11 +1,10 @@
 import { select } from "../main.js";
 import { formatSize } from "./make.js";
 
-let cumulativeXP = 0;
-const width = 680;
-const height = 303;
-
 export function creatPath(trans) {
+  let cumulativeXP = 0;
+  const width = 680;
+  const height = 303;
   const div = document.createElement("div");
   div.className = "card path";
   const dataPoints = trans.map((transaction) => {
@@ -25,8 +24,8 @@ export function creatPath(trans) {
 
   const pathData = dataPoints
     .map((point, index) => {
-      const x = scaleX(point.date, endTime, startTime);
-      const y = scaleY(point.xp, maxXP);
+      const x = scaleX(point.date, endTime, startTime, width);
+      const y = scaleY(point.xp, maxXP, height);
       return `${index === 0 ? "M" : "L"} ${x} ${y}`;
     })
     .join(" ");
@@ -49,8 +48,8 @@ export function creatPath(trans) {
       "http://www.w3.org/2000/svg",
       "circle"
     );
-    const x = scaleX(point.date, endTime, startTime);
-    const y = scaleY(point.xp, maxXP);
+    const x = scaleX(point.date, endTime, startTime, width);
+    const y = scaleY(point.xp, maxXP, height);
 
     circle.setAttribute("cx", x);
     circle.setAttribute("cy", y);
@@ -86,12 +85,12 @@ export function CreateNext(data) {
   select.append(div);
 }
 
-function scaleX(date, endDate, startDate) {
+function scaleX(date, endDate, startDate, width) {
   const timeRange = endDate - startDate;
   const timePosition = date - startDate;
   return (timePosition / timeRange) * width;
 }
 
-function scaleY(xp, maxXP) {
+function scaleY(xp, maxXP, height) {
   return height - (xp / maxXP) * height;
 }

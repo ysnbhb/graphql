@@ -96,6 +96,7 @@ body {
   justify-content: space-between;
   margin-top: 10px;
   flex-direction: column-reverse;
+  font-size: 2.5rem;
 }
 
 /* XP Level */
@@ -111,6 +112,15 @@ svg {
   overflow: visible;
   display: block;
   margin: auto;
+}
+
+.login-container {
+  max-width: 500px;
+  width: 90%;
+}
+
+h2 {
+  color: rgba(0, 0, 0, 0.486);
 }
 
 .hover {
@@ -139,7 +149,7 @@ svg {
 }
 
 .input-group input {
-  width: 100%;
+  width: 90%;
   padding: 12px;
   border: 2px solid #ddd;
   border-radius: 8px;
@@ -155,7 +165,7 @@ svg {
 
 /* Buttons */
 button {
-  width: 100%;
+  width: 40%;
   background: linear-gradient(135deg, #4a90e2, #9013fe);
   color: white;
   padding: 12px;
@@ -208,6 +218,12 @@ button:hover {
   button {
     padding: 10px;
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .login-container {
+    width: 100%;
   }
 }
 

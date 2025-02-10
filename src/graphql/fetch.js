@@ -1,9 +1,11 @@
+import { select } from "../main.js";
 import { query } from "./graphql.js";
 import { ShowAditau, showUserinfo } from "./make.js";
 import { CreateNext, creatPath } from "./path.js";
 
 export async function GetData(jwt) {
-  document.querySelector("section").innerHTML = "";
+  select.innerHTML = "";
+  select.style.alignItems = "";
   const respons = await fetch(
     "https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql",
     {
@@ -16,8 +18,6 @@ export async function GetData(jwt) {
     }
   );
   const data = await respons.json();
-  console.log(data.data);
-
   if (data.errors) {
     localStorage.removeItem("jwt-token");
     window.location.reload();
