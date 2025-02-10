@@ -3,13 +3,11 @@ import { select } from "./main.js";
 
 export async function login() {
   document.head.querySelector("title").innerText = "sign up";
-  select.style.alignItems ="center"
+  select.style.alignItems = "center";
   document.getElementById("form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const user = document.getElementById("user");
     const password = document.getElementById("password");
-    console.log(user.value, password.value);
-
     const auth = btoa(`${user.value}:${password.value}`);
     const respons = await fetch(
       "https://learn.zone01oujda.ma/api/auth/signin",

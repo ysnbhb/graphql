@@ -29,9 +29,6 @@ export function ShowAditau(info) {
     info.auditRatio.toFixed(1)
   );
   const divlevel = showLiver(info.transactions[0].amount);
-
-  console.log(info);
-
   const divXp = showXp(info.totalXp.aggregate.sum.amount);
   divskill.append(divAutdit, divlevel, divXp);
   select.append(divskill);
