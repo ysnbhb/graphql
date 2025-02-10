@@ -49,8 +49,6 @@ function UpDown(up, down, audit) {
       x: "7",
       y: "8",
       height: "10px",
-      rx: "5",
-      ry: "5",
     },
     "Done"
   );
@@ -62,8 +60,6 @@ function UpDown(up, down, audit) {
       x: "7",
       y: "8",
       height: "10px",
-      rx: "5",
-      ry: "5",
     },
     "Received"
   );
