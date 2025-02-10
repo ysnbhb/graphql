@@ -1,4 +1,5 @@
 import { select } from "../main.js";
+import { formatSize } from "./make.js";
 
 let cumulativeXP = 0;
 const width = 680;
@@ -7,7 +8,6 @@ const height = 303;
 export function creatPath(trans) {
   const div = document.createElement("div");
   div.className = "card path";
-
   const dataPoints = trans.map((transaction) => {
     cumulativeXP += transaction.amount;
     return {
@@ -39,17 +39,42 @@ export function creatPath(trans) {
   path.setAttribute("fill", "transparent");
   path.setAttribute("stroke-width", "3");
 
-  // ✅ Make SVG Responsive
-  svg.setAttribute("width", "100%");
-  svg.setAttribute("height", "100%");
+  svg.setAttribute("width", "90%");
+  svg.setAttribute("height", "90%");
   svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
   svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
-
   svg.append(path);
+  dataPoints.forEach((point) => {
+    const circle = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "circle"
+    );
+    const x = scaleX(point.date, endTime, startTime);
+    const y = scaleY(point.xp, maxXP);
+
+    circle.setAttribute("cx", x);
+    circle.setAttribute("cy", y);
+    circle.setAttribute("r", "5");
+    circle.setAttribute("fill", "#F9B824");
+    circle.addEventListener("mouseenter", (e) => {
+      const div = document.createElement("div");
+      div.className = "hover";
+      div.style.left = `${e.pageX + 10}px`;
+      div.style.top = `${e.pageY - 10}px`;
+      div.innerHTML = `
+        Name : ${point.name}<br>
+        Total XP : ${formatSize(point.xp)}
+      `;
+      circle.addEventListener("mouseleave", () => {
+        div.remove();
+      });
+      document.body.append(div);
+    });
+    svg.append(circle);
+  });
   div.append(svg);
   return div;
 }
-
 
 export function CreateNext(data) {
   const div = document.createElement("div");

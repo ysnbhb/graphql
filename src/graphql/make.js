@@ -131,7 +131,7 @@ function showXp(xp) {
   return divAutdit;
 }
 
-function formatSize(value) {
+export function formatSize(value) {
   if (value < 1000) {
     return `${value}B`;
   } else if (value >= 1000 && value < 1000000) {

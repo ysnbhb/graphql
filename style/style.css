@@ -108,7 +108,15 @@ body {
 svg {
   width: 100%;
   height: auto;
-  /* max-height: 250px; */
+  overflow: visible;
+  display: block;
+  margin: auto;
+}
+
+.hover {
+  position: absolute;
+  color: rgb(230, 224, 224);
+  font-size: 13px;
 }
 
 /* Login Card */
