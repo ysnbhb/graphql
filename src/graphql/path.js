@@ -1,9 +1,13 @@
+import { select } from "../main.js";
+
 let cumulativeXP = 0;
 const width = 680;
 const height = 303;
 
 export function creatPath(trans) {
-  const dataPoints = sortedData.map((transaction) => {
+  const div = document.createElement("div");
+  div.className = "card path";
+  const dataPoints = trans.map((transaction) => {
     cumulativeXP += transaction.amount;
     return {
       date: new Date(transaction.createdAt),
@@ -11,16 +15,42 @@ export function creatPath(trans) {
       xp: cumulativeXP,
     };
   });
-  const endTime = dataPoints[dataPoints.lenght - 1].date;
+  if (dataPoints.length === 0) return;
+  const endTime = dataPoints[dataPoints.length - 1].date;
   const startTime = dataPoints[0].date;
   const maxXP = dataPoints[dataPoints.length - 1].xp;
+
   const pathData = dataPoints
     .map((point, index) => {
-      x = scaleX(point.date);
-      y = scaleY(point.xp);
+      const x = scaleX(point.date, endTime, startTime);
+      const y = scaleY(point.xp, maxXP);
       return `${index === 0 ? "M" : "L"} ${x} ${y}`;
     })
     .join(" ");
+
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+  path.setAttribute("d", pathData);
+  path.setAttribute("stroke", "#ffff");
+  path.setAttribute("fill", "transparent");
+  path.setAttribute("stroke-width", "3");
+  svg.setAttribute("width", width);
+  svg.setAttribute("height", height);
+  svg.setAttribute("fill", "red");
+  // svg.setAttribute("viewBox", "0 -20 620 303");
+
+  svg.append(path);
+  div.append(svg);
+  return div;
+}
+
+export function CreateNext(data) {
+  const div = document.createElement("div");
+  div.className = "next";
+  const divpath = creatPath(data.transaction);
+  div.append(divpath);
+  select.append(div);
 }
 
 function scaleX(date, endDate, startDate) {

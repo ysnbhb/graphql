@@ -1,5 +1,6 @@
 import { query } from "./graphql.js";
 import { ShowAditau, showUserinfo } from "./make.js";
+import { CreateNext, creatPath } from "./path.js";
 
 export async function GetData(jwt) {
   document.querySelector("section").innerHTML = "";
@@ -23,4 +24,5 @@ export async function GetData(jwt) {
   }
   showUserinfo(data.data.user[0]);
   ShowAditau(data.data.user[0]);
+  CreateNext(data.data);
 }
