@@ -47,7 +47,7 @@ function UpDown(up, down, audit) {
   const svgup = createdSvg(
     "rect",
     {
-      width: `${(up / maxR) * 90}%`,
+      width: `${(up / maxR) * 95}%`,
       fill: "#6160FF",
       x: "7",
       y: "8",
@@ -60,7 +60,7 @@ function UpDown(up, down, audit) {
   const svgdown = createdSvg(
     "rect",
     {
-      width: `${(down / maxR) * 90}%`,
+      width: `${(down / maxR) * 95}%`,
       fill: "#F9B824",
       x: "7",
       y: "8",
@@ -82,6 +82,7 @@ function createdSvg(elemet, attr, text) {
   const div = document.createElement("div");
   div.className = "rank-audit";
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.classList.add("svg")
   const rect = document.createElementNS("http://www.w3.org/2000/svg", elemet);
   for (let key in attr) {
     rect.setAttribute(key, attr[key]);

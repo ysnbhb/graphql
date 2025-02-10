@@ -7,6 +7,7 @@ const height = 303;
 export function creatPath(trans) {
   const div = document.createElement("div");
   div.className = "card path";
+
   const dataPoints = trans.map((transaction) => {
     cumulativeXP += transaction.amount;
     return {
@@ -15,7 +16,9 @@ export function creatPath(trans) {
       xp: cumulativeXP,
     };
   });
+
   if (dataPoints.length === 0) return;
+
   const endTime = dataPoints[dataPoints.length - 1].date;
   const startTime = dataPoints[0].date;
   const maxXP = dataPoints[dataPoints.length - 1].xp;
@@ -35,15 +38,18 @@ export function creatPath(trans) {
   path.setAttribute("stroke", "#ffff");
   path.setAttribute("fill", "transparent");
   path.setAttribute("stroke-width", "3");
-  svg.setAttribute("width", width);
-  svg.setAttribute("height", height);
-  svg.setAttribute("fill", "red");
-  // svg.setAttribute("viewBox", "0 -20 620 303");
+
+  // ✅ Make SVG Responsive
+  svg.setAttribute("width", "100%");
+  svg.setAttribute("height", "100%");
+  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
   svg.append(path);
   div.append(svg);
   return div;
 }
+
 
 export function CreateNext(data) {
   const div = document.createElement("div");
