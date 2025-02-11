@@ -21,7 +21,7 @@ export const query = /*gql*/ `
               where: {
               _and: [
               { type: { _eq: "xp" } }
-              {eventId : {_eq : "41"}}
+              {event:{object:{name:{_eq:"Module"}}}}
         ]
         }
         ) {
@@ -34,7 +34,7 @@ export const query = /*gql*/ `
         }
         transaction (where:{_and:[
             {type :{_eq :"xp"}}
-             {object : {type : {_in :["project" , "piscine"]}}}
+            {event:{object:{name:{_eq:"Module"}}}}
         ]}
             order_by :{createdAt :asc}
         ){
@@ -43,7 +43,6 @@ export const query = /*gql*/ `
                 name
             }
             createdAt
-        }
-      
-    }
+        }    
+}
 `;
